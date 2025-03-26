@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt2jnh65obhk8"]
+
+[ext_resource type="Texture2D" uid="uid://chqgajqha31v0" path="res://icon.svg" id="1_c8ncg"]
+[ext_resource type="Script" uid="uid://c2bb2yfp6fsnr" path="res://sprite_2d.gd" id="2_g60ht"]
+[ext_resource type="Script" uid="uid://q6illonrvdqx" path="res://label.gd" id="3_ihhpa"]
+
+[node name="Main" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(68, 277)
+texture = ExtResource("1_c8ncg")
+script = ExtResource("2_g60ht")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 376.0
+offset_top = 191.0
+offset_right = 416.0
+offset_bottom = 214.0
+scale = Vector2(7.70636, 5.34408)
+script = ExtResource("3_ihhpa")

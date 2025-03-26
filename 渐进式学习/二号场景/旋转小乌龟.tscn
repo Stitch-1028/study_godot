@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://fn5ci8egqrja"]
+
+[ext_resource type="Texture2D" uid="uid://d1tqahij8qnm6" path="res://icon.svg" id="1_6h54h"]
+[ext_resource type="Script" uid="uid://tp48cps1d0mw" path="res://主场景/小乌龟.gd" id="2_dgicp"]
+
+[node name="旋转小乌龟" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6h54h")
+script = ExtResource("2_dgicp")

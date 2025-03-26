@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://ndglf0jy2aux"]
+
+[ext_resource type="Texture2D" uid="uid://chqgajqha31v0" path="res://icon.svg" id="1_g3xox"]
+[ext_resource type="Script" uid="uid://c2bb2yfp6fsnr" path="res://练习/sprite_2d.gd" id="2_exq3n"]
+
+[sub_resource type="GDScript" id="GDScript_g60ht"]
+script/source = "extends Label
+
+var title = 'hello world'
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	self.text = title
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Main" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(68, 277)
+texture = ExtResource("1_g3xox")
+script = ExtResource("2_exq3n")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 183.0
+offset_top = 237.0
+offset_right = 223.0
+offset_bottom = 260.0
+scale = Vector2(6.16637, 3.63494)
+script = SubResource("GDScript_g60ht")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 326)
