@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvueyhjnmla7a"]
+
+[ext_resource type="Script" uid="uid://bghi2qrnt20yx" path="res://Main/main.gd" id="1_yh5la"]
+[ext_resource type="PackedScene" uid="uid://eppgj6kccnrf" path="res://Mob/Mob.tscn" id="2_qvhan"]
+[ext_resource type="PackedScene" uid="uid://di6jlt70j0flv" path="res://Player/Player.tscn" id="3_eunhr"]
+
+[sub_resource type="Curve2D" id="Curve2D_2w1kt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 480, 1, 0, 0, 0, 0, 481, 716, 0, 0, 0, 0, 3, 715, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 340)
+}
+point_count = 6
+
+[node name="Main" type="Node"]
+script = ExtResource("1_yh5la")
+mob_scene = ExtResource("2_qvhan")
+
+[node name="怪物生产频率" type="Timer" parent="."]
+
+[node name="每秒增加分数" type="Timer" parent="."]
+
+[node name="开始之前的延迟" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="玩家起始位置" type="Marker2D" parent="."]
+position = Vector2(258, 462)
+
+[node name="怪物路径" type="Path2D" parent="."]
+curve = SubResource("Curve2D_2w1kt")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="怪物路径"]
+position = Vector2(0, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_eunhr")]
+
+[node name="计分板" type="Label" parent="."]
+offset_left = 158.0
+offset_top = 17.0
+offset_right = 308.0
+offset_bottom = 70.0
+text = "当前分数:0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="怪物生产频率" to="." method="_on_怪物生产频率_timeout"]
+[connection signal="timeout" from="每秒增加分数" to="." method="_on_每秒增加分数_timeout"]
+[connection signal="timeout" from="开始之前的延迟" to="." method="_on_开始之前的延迟_timeout"]
+[connection signal="hit" from="Player" to="." method="game_over"]

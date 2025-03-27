@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx5r8i8gsd7t3"]
+[gd_scene load_steps=2 format=3 uid="uid://bx5r8i8gsd7t3"]
 
 [ext_resource type="PackedScene" uid="uid://bopdoxu11f7he" path="res://主场景/旋转小乌龟.tscn" id="1_q7vwl"]
-[ext_resource type="Script" uid="uid://cu0ousjygkrdy" path="res://二号场景/旋转小乌龟2.gd" id="2_mt4yy"]
 
 [node name="二号场景" type="Node2D"]
 
@@ -15,13 +14,4 @@ text = "Toggle motion"
 [node name="旋转小乌龟" parent="." instance=ExtResource("1_q7vwl")]
 position = Vector2(588, 307)
 
-[node name="旋转小乌龟2" parent="." instance=ExtResource("1_q7vwl")]
-position = Vector2(378, 305)
-script = ExtResource("2_mt4yy")
-
-[node name="BlinkingTimer" type="Timer" parent="旋转小乌龟2"]
-wait_time = 0.1
-autostart = true
-
 [connection signal="pressed" from="Button" to="旋转小乌龟" method="_on_button_pressed"]
-[connection signal="health_depleted" from="旋转小乌龟" to="旋转小乌龟2" method="_on_旋转小乌龟_health_depleted"]
