@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvueyhjnmla7a"]
+[gd_scene load_steps=6 format=3 uid="uid://cvueyhjnmla7a"]
 
 [ext_resource type="Script" uid="uid://bghi2qrnt20yx" path="res://Main/main.gd" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://eppgj6kccnrf" path="res://Mob/Mob.tscn" id="2_qvhan"]
 [ext_resource type="PackedScene" uid="uid://di6jlt70j0flv" path="res://Player/Player.tscn" id="3_eunhr"]
+[ext_resource type="PackedScene" uid="uid://bpep8fqlhu2ja" path="res://UI/HUD.tscn" id="4_eunhr"]
 
 [sub_resource type="Curve2D" id="Curve2D_2w1kt"]
 _data = {
@@ -23,7 +24,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="玩家起始位置" type="Marker2D" parent="."]
-position = Vector2(258, 462)
+position = Vector2(214, 405)
 
 [node name="怪物路径" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2w1kt")
@@ -32,17 +33,12 @@ curve = SubResource("Curve2D_2w1kt")
 position = Vector2(0, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_eunhr")]
+position = Vector2(218, 341)
 
-[node name="计分板" type="Label" parent="."]
-offset_left = 158.0
-offset_top = 17.0
-offset_right = 308.0
-offset_bottom = 70.0
-text = "当前分数:0"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="HUD" parent="." instance=ExtResource("4_eunhr")]
 
 [connection signal="timeout" from="怪物生产频率" to="." method="_on_怪物生产频率_timeout"]
 [connection signal="timeout" from="每秒增加分数" to="." method="_on_每秒增加分数_timeout"]
 [connection signal="timeout" from="开始之前的延迟" to="." method="_on_开始之前的延迟_timeout"]
 [connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="start_game" from="HUD" to="." method="_on_ui界面_start_game"]

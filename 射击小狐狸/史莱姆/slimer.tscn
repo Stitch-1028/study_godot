@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://bed66np2owmg"]
+
+[ext_resource type="Script" uid="uid://cuvx1nwdi8a2x" path="res://史莱姆/slimer.gd" id="1_lfl3u"]
+[ext_resource type="Texture2D" uid="uid://dm3i1s74inuad" path="res://AssetBundle/Sprites/Slimer.png" id="1_wkfln"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfl3u"]
+atlas = ExtResource("1_wkfln")
+region = Rect2(0, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbje6"]
+atlas = ExtResource("1_wkfln")
+region = Rect2(41, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs4am"]
+atlas = ExtResource("1_wkfln")
+region = Rect2(82, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxkgy"]
+atlas = ExtResource("1_wkfln")
+region = Rect2(123, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glgh3"]
+atlas = ExtResource("1_wkfln")
+region = Rect2(164, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed8qv"]
+atlas = ExtResource("1_wkfln")
+region = Rect2(205, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj1l2"]
+atlas = ExtResource("1_wkfln")
+region = Rect2(246, 0, 41, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5gwm"]
+atlas = ExtResource("1_wkfln")
+region = Rect2(287, 0, 41, 38)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ct387"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfl3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbje6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs4am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxkgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glgh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ed8qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj1l2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5gwm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fc03r"]
+radius = 14.0357
+
+[node name="Slimer" type="Area2D"]
+script = ExtResource("1_lfl3u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -20)
+sprite_frames = SubResource("SpriteFrames_ct387")
+autoplay = "default"
+frame = 3
+frame_progress = 0.384493
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -8)
+shape = SubResource("CircleShape2D_fc03r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

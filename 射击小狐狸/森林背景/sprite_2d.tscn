@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://x5tjaceap8rl"]
+
+[ext_resource type="Texture2D" uid="uid://yme8d0fb44rr" path="res://AssetBundle/Sprites/ForestBackground.png" id="1_ttc4g"]
+[ext_resource type="Script" uid="uid://cfs5f3ud1vh20" path="res://森林背景/主场景.gd" id="1_wsb3a"]
+[ext_resource type="PackedScene" uid="uid://dteeksbba18su" path="res://player/player.tscn" id="2_mispn"]
+[ext_resource type="Script" uid="uid://1sxy6vjf40qi" path="res://森林背景/监测子弹碰撞区域.gd" id="3_huqkv"]
+[ext_resource type="PackedScene" uid="uid://bed66np2owmg" path="res://史莱姆/slimer.tscn" id="3_rel1y"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mispn"]
+distance = -1.08865
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rel1y"]
+distance = -0.870911
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_21hmk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_huqkv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21hmk"]
+size = Vector2(8.42104, 281.306)
+
+[node name="Sprite2D" type="Node2D"]
+y_sort_enabled = true
+position = Vector2(228, 323.5)
+scale = Vector2(1.9, 2.29643)
+script = ExtResource("1_wsb3a")
+
+[node name="background1" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-272.5, -140.435)
+scale = Vector2(1.25768, 1)
+texture = ExtResource("1_ttc4g")
+metadata/_edit_lock_ = true
+
+[node name="background2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(31.4474, -140.435)
+scale = Vector2(1.27522, 1.00078)
+texture = ExtResource("1_ttc4g")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-119.474, -140.435)
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_mispn")]
+position = Vector2(-316.316, -71.633)
+
+[node name="空气墙" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="空气墙"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="空气墙/StaticBody2D"]
+position = Vector2(-118.947, -0.217729)
+shape = SubResource("WorldBoundaryShape2D_mispn")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="空气墙"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="空气墙/StaticBody2D2"]
+position = Vector2(-119.474, -97.7605)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_rel1y")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="空气墙"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="空气墙/StaticBody2D3"]
+position = Vector2(-423.158, -67.7138)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_21hmk")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="空气墙"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="空气墙/StaticBody2D4"]
+position = Vector2(184.737, -67.7138)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_huqkv")
+
+[node name="Slimer" parent="." instance=ExtResource("3_rel1y")]
+position = Vector2(75.7895, -65.5365)
+slimer_speed = -50
+
+[node name="监测子弹碰撞区域" type="Area2D" parent="."]
+script = ExtResource("3_huqkv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="监测子弹碰撞区域"]
+position = Vector2(191.579, -140.871)
+shape = SubResource("RectangleShape2D_21hmk")
+
+[connection signal="every_stop" from="Player" to="Slimer" method="_on_player_every_stop"]
+[connection signal="shot_bullet" from="Player" to="." method="_on_player_shot_bullet"]
+[connection signal="area_entered" from="Slimer" to="Slimer" method="_on_area_entered"]
+[connection signal="area_entered" from="监测子弹碰撞区域" to="监测子弹碰撞区域" method="_on_area_entered"]
+[connection signal="body_entered" from="监测子弹碰撞区域" to="监测子弹碰撞区域" method="_on_body_entered"]
