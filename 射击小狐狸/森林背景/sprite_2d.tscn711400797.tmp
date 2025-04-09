@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cfs5f3ud1vh20" path="res://森林背景/主场景.gd" id="1_wsb3a"]
 [ext_resource type="PackedScene" uid="uid://dteeksbba18su" path="res://player/player.tscn" id="2_mispn"]
 [ext_resource type="Script" uid="uid://1sxy6vjf40qi" path="res://森林背景/监测子弹碰撞区域.gd" id="3_huqkv"]
-[ext_resource type="Script" uid="uid://bydx40h77v4ei" path="res://森林背景/计分板.gd" id="5_huqkv"]
+[ext_resource type="PackedScene" uid="uid://bed66np2owmg" path="res://史莱姆/slimer.tscn" id="3_rel1y"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mispn"]
 distance = -1.08865
@@ -76,8 +76,11 @@ position = Vector2(184.737, -67.7138)
 rotation = 4.71239
 shape = SubResource("WorldBoundaryShape2D_huqkv")
 
+[node name="Slimer" parent="." instance=ExtResource("3_rel1y")]
+position = Vector2(75.7895, -65.5365)
+slimer_speed = -50
+
 [node name="监测子弹碰撞区域" type="Area2D" parent="."]
-position = Vector2(0.526316, -0.217729)
 script = ExtResource("3_huqkv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="监测子弹碰撞区域"]
@@ -88,16 +91,9 @@ shape = SubResource("RectangleShape2D_21hmk")
 wait_time = 0.5
 autostart = true
 
-[node name="计分板" type="Label" parent="."]
-offset_left = -410.526
-offset_top = -273.686
-offset_right = -319.526
-offset_bottom = -250.686
-theme_override_font_sizes/font_size = 15
-script = ExtResource("5_huqkv")
-count = 4
-
+[connection signal="every_stop" from="Player" to="Slimer" method="_on_player_every_stop"]
 [connection signal="shot_bullet" from="Player" to="." method="_on_player_shot_bullet"]
+[connection signal="area_entered" from="Slimer" to="Slimer" method="_on_area_entered"]
 [connection signal="area_entered" from="监测子弹碰撞区域" to="监测子弹碰撞区域" method="_on_area_entered"]
 [connection signal="body_entered" from="监测子弹碰撞区域" to="监测子弹碰撞区域" method="_on_body_entered"]
 [connection signal="timeout" from="定时生成史莱姆" to="." method="_on_定时生成史莱姆_timeout"]

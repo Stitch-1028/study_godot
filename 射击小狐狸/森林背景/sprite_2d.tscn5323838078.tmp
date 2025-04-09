@@ -94,6 +94,7 @@ offset_top = -273.686
 offset_right = -319.526
 offset_bottom = -250.686
 theme_override_font_sizes/font_size = 15
+text = "当前得分：0"
 script = ExtResource("5_huqkv")
 count = 4
 

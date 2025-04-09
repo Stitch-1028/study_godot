@@ -1,11 +1,11 @@
 extends Area2D
 
-@export var bullet_speed = 100
+@export var bullet_speed = 300
 var is_bullet = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	set_meta("type","Bullet")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
