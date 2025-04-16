@@ -80,8 +80,12 @@ shape = SubResource("WorldBoundaryShape2D_huqkv")
 position = Vector2(0.526316, -0.217729)
 script = ExtResource("3_huqkv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="监测子弹碰撞区域"]
+[node name="CollisionShape2D_right" type="CollisionShape2D" parent="监测子弹碰撞区域"]
 position = Vector2(191.579, -140.871)
+shape = SubResource("RectangleShape2D_21hmk")
+
+[node name="CollisionShape2D_left" type="CollisionShape2D" parent="监测子弹碰撞区域"]
+position = Vector2(-434.211, -140.218)
 shape = SubResource("RectangleShape2D_21hmk")
 
 [node name="定时生成史莱姆" type="Timer" parent="."]
@@ -95,7 +99,6 @@ offset_right = -319.526
 offset_bottom = -250.686
 theme_override_font_sizes/font_size = 15
 script = ExtResource("5_huqkv")
-count = 4
 
 [connection signal="shot_bullet" from="Player" to="." method="_on_player_shot_bullet"]
 [connection signal="area_entered" from="监测子弹碰撞区域" to="监测子弹碰撞区域" method="_on_area_entered"]

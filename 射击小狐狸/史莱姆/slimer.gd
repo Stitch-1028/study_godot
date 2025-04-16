@@ -22,9 +22,14 @@ func _on_player_every_stop() -> void:
 #遇到子弹消失
 func _on_area_entered(area: Area2D) -> void:
 	if area.has_meta("type") and area.get_meta("type") == "Bullet" and $AnimatedSprite2D.animation != 'die':
+		$shot_donw.play()
 		$AnimatedSprite2D.play("die")
 		slimer_speed = 0
 		area.queue_free()
 		await get_tree().create_timer(1).timeout
 		queue_free()
 		get_point.emit()
+
+func on_stop():
+	slimer_speed = 0
+	pass

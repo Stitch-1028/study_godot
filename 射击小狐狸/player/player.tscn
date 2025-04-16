@@ -1,7 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dteeksbba18su"]
+[gd_scene load_steps=24 format=3 uid="uid://dteeksbba18su"]
 
 [ext_resource type="Texture2D" uid="uid://cejx67n2071x2" path="res://AssetBundle/Sprites/Foxy.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://dpxecpv0bop8v" path="res://script/player.gd" id="1_rkbax"]
+[ext_resource type="AudioStream" uid="uid://eq5yv1ssqbrj" path="res://AssetBundle/Audio/Gun.mp3" id="3_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://dqimwfsw6oqf0" path="res://AssetBundle/Audio/BGM.ogg" id="4_yw30f"]
+[ext_resource type="AudioStream" uid="uid://dabdsh8y8rv5j" path="res://AssetBundle/Audio/GameOver.mp3" id="5_qjkh3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkbax"]
 atlas = ExtResource("1_oul6g")
@@ -143,10 +146,23 @@ script = ExtResource("1_rkbax")
 position = Vector2(-0.25, 0.5)
 scale = Vector2(0.984848, 0.96875)
 sprite_frames = SubResource("SpriteFrames_g6k8r")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
+frame_progress = 0.000263635
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_rkbax")
+
+[node name="shot_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_g1dw6")
+volume_db = -16.865
+
+[node name="is_live_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yw30f")
+volume_db = -21.55
+
+[node name="is_death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qjkh3")
+volume_db = -8.432
