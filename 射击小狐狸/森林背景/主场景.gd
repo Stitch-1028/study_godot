@@ -5,18 +5,28 @@ var slimer_scene = preload("res://史莱姆/slimer.tscn")
 # Called when the node enters the scene tree for the first time.
 var label_node:Label
 var player : CharacterBody2D
+var is_stop = false
 func _ready() -> void:
 	label_node = get_node("计分板")
 	player = get_node("Player")
 	$"定时生成史莱姆".start()
+	$"暂停背景".game_running()
 
-
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	pass
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ESC"):
+		get_tree().paused = true
+		$"暂停背景".game_stop()
+			
 
-func _on_player_shot_bullet(x,y) -> void:
+func _on_player_shot_bullet(config : Dictionary) -> void:
+	var x = config.get('x')
+	var y = config.get('y')
 	var bullet = bullet_scene.instantiate()
+	bullet.config.merge(config,true)
+	#bullet_scene.config.is_penetrate = config.get('is_penetrate')
 #	如果人物面相 ← 则弹向左边飞 之则向右
 	if $Player.is_flip_h: 
 		bullet.x_position = 'left'

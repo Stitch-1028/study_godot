@@ -25,7 +25,9 @@ func _on_area_entered(area: Area2D) -> void:
 		$shot_donw.play()
 		$AnimatedSprite2D.play("die")
 		slimer_speed = 0
-		area.queue_free()
+#		如果子弹具有穿透性则不会消失
+		if not area.config.get('is_penetrate'):
+			area.queue_free()
 		await get_tree().create_timer(1).timeout
 		queue_free()
 		get_point.emit()

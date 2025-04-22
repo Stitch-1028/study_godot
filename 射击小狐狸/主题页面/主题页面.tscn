@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc15gnymboo48"]
+
+[ext_resource type="Script" uid="uid://bn76y5y7dr74" path="res://主题页面/背景面板.gd" id="1_etvdg"]
+[ext_resource type="Texture2D" uid="uid://yme8d0fb44rr" path="res://AssetBundle/Sprites/ForestBackground.png" id="1_fd04f"]
+
+[node name="主题页面" type="CanvasLayer"]
+layer = 100
+
+[node name="背景面板" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_etvdg")
+
+[node name="Sprite2D" type="Sprite2D" parent="背景面板"]
+position = Vector2(577, 324.5)
+scale = Vector2(4.79167, 2.31071)
+texture = ExtResource("1_fd04f")
+
+[node name="游戏名称" type="Label" parent="背景面板"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 35.0
+offset_right = 762.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 84
+text = "death fox~"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="开始游戏" type="Button" parent="背景面板"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 256.0
+offset_right = 689.0
+offset_bottom = 323.0
+theme_override_colors/font_hover_pressed_color = Color(0.173046, 0.70575, 0.73503, 1)
+theme_override_colors/icon_focus_color = Color(0.172549, 0.705882, 0.733333, 1)
+theme_override_colors/font_color = Color(0.318035, 0.650503, 0.66578, 1)
+theme_override_font_sizes/font_size = 36
+text = "开始游戏"
+
+[node name="退出游戏" type="Button" parent="背景面板"]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 360.0
+offset_right = 689.0
+offset_bottom = 419.0
+theme_override_colors/font_hover_color = Color(0.952451, 0.774781, 0.790979, 1)
+theme_override_colors/icon_focus_color = Color(0.952941, 0.776471, 0.792157, 1)
+theme_override_colors/font_color = Color(0.792977, 0.554386, 0.641825, 1)
+theme_override_font_sizes/font_size = 37
+text = "退出游戏"
+
+[node name="至朱桑" type="Label" parent="背景面板"]
+layout_mode = 0
+offset_left = 968.0
+offset_top = 605.0
+offset_right = 1152.0
+offset_bottom = 642.0
+theme_override_font_sizes/font_size = 27
+text = "阿里嘎多 朱桑~"
+
+[connection signal="pressed" from="背景面板/开始游戏" to="背景面板" method="_on_开始游戏_pressed"]
+[connection signal="pressed" from="背景面板/退出游戏" to="背景面板" method="_on_退出游戏_pressed"]

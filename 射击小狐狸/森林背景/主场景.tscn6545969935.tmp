@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://x5tjaceap8rl"]
+[gd_scene load_steps=12 format=3 uid="uid://x5tjaceap8rl"]
 
-[ext_resource type="Texture2D" uid="uid://yme8d0fb44rr" path="res://AssetBundle/Sprites/ForestBackground.png" id="1_ttc4g"]
-[ext_resource type="Script" uid="uid://cfs5f3ud1vh20" path="res://森林背景/主场景.gd" id="1_wsb3a"]
-[ext_resource type="PackedScene" uid="uid://dteeksbba18su" path="res://player/player.tscn" id="2_mispn"]
-[ext_resource type="Script" uid="uid://1sxy6vjf40qi" path="res://森林背景/监测子弹碰撞区域.gd" id="3_huqkv"]
-[ext_resource type="Script" uid="uid://bydx40h77v4ei" path="res://森林背景/计分板.gd" id="5_huqkv"]
+[ext_resource type="Script" uid="uid://cfs5f3ud1vh20" path="res://森林背景/主场景.gd" id="1_2pavc"]
+[ext_resource type="Texture2D" uid="uid://yme8d0fb44rr" path="res://AssetBundle/Sprites/ForestBackground.png" id="2_76x8b"]
+[ext_resource type="PackedScene" uid="uid://dteeksbba18su" path="res://player/player.tscn" id="3_38y2f"]
+[ext_resource type="Script" uid="uid://1sxy6vjf40qi" path="res://森林背景/监测子弹碰撞区域.gd" id="4_oojlx"]
+[ext_resource type="Script" uid="uid://bydx40h77v4ei" path="res://森林背景/计分板.gd" id="5_xq14e"]
+[ext_resource type="Script" uid="uid://b8kca5qtbk1t8" path="res://森林背景/暂停背景.gd" id="6_76x8b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mispn"]
 distance = -1.08865
@@ -20,30 +21,31 @@ distance = -0.870911
 size = Vector2(8.42104, 281.306)
 
 [node name="Sprite2D" type="Node2D"]
+process_mode = 3
 y_sort_enabled = true
 position = Vector2(228, 323.5)
 scale = Vector2(1.9, 2.29643)
-script = ExtResource("1_wsb3a")
+script = ExtResource("1_2pavc")
 
 [node name="background1" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(-272.5, -140.435)
 scale = Vector2(1.25768, 1)
-texture = ExtResource("1_ttc4g")
+texture = ExtResource("2_76x8b")
 metadata/_edit_lock_ = true
 
 [node name="background2" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(31.4474, -140.435)
 scale = Vector2(1.27522, 1.00078)
-texture = ExtResource("1_ttc4g")
+texture = ExtResource("2_76x8b")
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-119.474, -140.435)
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("2_mispn")]
+[node name="Player" parent="." instance=ExtResource("3_38y2f")]
 position = Vector2(-316.316, -71.633)
 
 [node name="空气墙" type="Node2D" parent="."]
@@ -78,7 +80,7 @@ shape = SubResource("WorldBoundaryShape2D_huqkv")
 
 [node name="监测子弹碰撞区域" type="Area2D" parent="."]
 position = Vector2(0.526316, -0.217729)
-script = ExtResource("3_huqkv")
+script = ExtResource("4_oojlx")
 
 [node name="CollisionShape2D_right" type="CollisionShape2D" parent="监测子弹碰撞区域"]
 position = Vector2(191.579, -140.871)
@@ -98,9 +100,46 @@ offset_top = -273.686
 offset_right = -319.526
 offset_bottom = -250.686
 theme_override_font_sizes/font_size = 15
-script = ExtResource("5_huqkv")
+script = ExtResource("5_xq14e")
+
+[node name="暂停背景" type="Panel" parent="."]
+process_mode = 3
+offset_left = -253.0
+offset_top = -260.0
+offset_right = 11.0
+offset_bottom = -18.0
+script = ExtResource("6_76x8b")
+
+[node name="Label" type="Label" parent="暂停背景"]
+layout_mode = 0
+offset_left = -0.157904
+offset_top = 39.0048
+offset_right = 263.842
+offset_bottom = 72.0048
+theme_override_colors/font_color = Color(0.711915, 0.541523, 0.407078, 1)
+theme_override_font_sizes/font_size = 16
+text = "已暂停"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="继续游戏" type="Button" parent="暂停背景"]
+layout_mode = 0
+offset_top = 105.0
+offset_right = 264.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 14
+text = "继续游戏"
+
+[node name="退出游戏" type="Button" parent="暂停背景"]
+layout_mode = 0
+offset_top = 174.0
+offset_right = 264.0
+offset_bottom = 205.0
+theme_override_font_sizes/font_size = 14
+text = "退出游戏"
 
 [connection signal="shot_bullet" from="Player" to="." method="_on_player_shot_bullet"]
 [connection signal="area_entered" from="监测子弹碰撞区域" to="监测子弹碰撞区域" method="_on_area_entered"]
 [connection signal="body_entered" from="监测子弹碰撞区域" to="监测子弹碰撞区域" method="_on_body_entered"]
 [connection signal="timeout" from="定时生成史莱姆" to="." method="_on_定时生成史莱姆_timeout"]
+[connection signal="pressed" from="暂停背景/继续游戏" to="暂停背景" method="_on_继续游戏_pressed"]
