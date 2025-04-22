@@ -142,7 +142,7 @@ shape = SubResource("CircleShape2D_fc03r")
 
 [node name="shot_donw" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_gs4am")
-volume_db = -9.649
+volume_db = -23.703
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
