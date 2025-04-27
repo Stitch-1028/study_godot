@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://x5tjaceap8rl"]
+[gd_scene load_steps=13 format=3 uid="uid://x5tjaceap8rl"]
 
 [ext_resource type="Script" uid="uid://cfs5f3ud1vh20" path="res://森林背景/主场景.gd" id="1_2pavc"]
 [ext_resource type="Texture2D" uid="uid://yme8d0fb44rr" path="res://AssetBundle/Sprites/ForestBackground.png" id="2_76x8b"]
@@ -18,12 +18,15 @@ distance = -0.870911
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_huqkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21hmk"]
-size = Vector2(8.42104, 281.306)
+size = Vector2(261.71, 593.886)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76x8b"]
+size = Vector2(208.582, 1030.26)
 
 [node name="Sprite2D" type="Node2D"]
 process_mode = 1
 y_sort_enabled = true
-position = Vector2(228, 323.5)
+position = Vector2(802, 647)
 scale = Vector2(1.9, 2.29643)
 script = ExtResource("1_2pavc")
 
@@ -41,14 +44,11 @@ scale = Vector2(1.27522, 1.00078)
 texture = ExtResource("2_76x8b")
 metadata/_edit_lock_ = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-119.474, -140.435)
-metadata/_edit_lock_ = true
-
 [node name="Player" parent="." instance=ExtResource("3_38y2f")]
-position = Vector2(-316.316, -71.633)
+position = Vector2(-319.474, -118.88)
 
 [node name="空气墙" type="Node2D" parent="."]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="空气墙"]
@@ -60,35 +60,47 @@ shape = SubResource("WorldBoundaryShape2D_mispn")
 [node name="StaticBody2D2" type="StaticBody2D" parent="空气墙"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="空气墙/StaticBody2D2"]
-position = Vector2(-119.474, -97.7605)
+position = Vector2(-118.947, -280.653)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_rel1y")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="空气墙"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="空气墙/StaticBody2D3"]
-position = Vector2(-423.158, -67.7138)
+position = Vector2(-423.684, -140.435)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_21hmk")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="空气墙"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="空气墙/StaticBody2D4"]
-position = Vector2(184.737, -67.7138)
+position = Vector2(184.737, -140.435)
 rotation = 4.71239
 shape = SubResource("WorldBoundaryShape2D_huqkv")
 
 [node name="监测子弹碰撞区域" type="Area2D" parent="."]
-position = Vector2(0.526316, -0.217729)
+position = Vector2(1.78814e-07, -0.217729)
 script = ExtResource("4_oojlx")
 
 [node name="CollisionShape2D_right" type="CollisionShape2D" parent="监测子弹碰撞区域"]
-position = Vector2(251.053, -140.218)
+position = Vector2(495.066, -64.626)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_21hmk")
 
 [node name="CollisionShape2D_left" type="CollisionShape2D" parent="监测子弹碰撞区域"]
-position = Vector2(-493.684, -140.218)
+position = Vector2(-852.105, -154.806)
 shape = SubResource("RectangleShape2D_21hmk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="监测子弹碰撞区域"]
+position = Vector2(-121.579, -544.976)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_76x8b")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="监测子弹碰撞区域"]
+position = Vector2(-191.711, 244.293)
+rotation = 1.5708
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_76x8b")
 
 [node name="定时生成史莱姆" type="Timer" parent="."]
 wait_time = 0.15
@@ -108,6 +120,7 @@ script = ExtResource("5_xq14e")
 
 [node name="暂停背景" type="Panel" parent="."]
 process_mode = 3
+visible = false
 offset_left = -253.0
 offset_top = -260.0
 offset_right = 11.0

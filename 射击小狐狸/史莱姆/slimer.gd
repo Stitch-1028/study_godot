@@ -1,18 +1,22 @@
 extends Area2D
 
-@export var slimer_speed = -100
+@export var slimer_speed = 100
 signal get_point
+var player: CharacterBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	set_meta("type","Slimer")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	position += Vector2(slimer_speed,0) * delta
+	if player:
+		# 计算移动方向
+		var direction = (player.global_position - global_position).normalized()
+		# 更新位置
+		position += direction * slimer_speed * delta
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
+	if body is CharacterBody2D and $AnimatedSprite2D.animation != 'die':
 		body.game_over()
 
 
@@ -35,3 +39,8 @@ func _on_area_entered(area: Area2D) -> void:
 func on_stop():
 	slimer_speed = 0
 	pass
+
+
+func _on_timer_timeout() -> void:
+#	每过一秒钟 史莱姆速度会增加100
+	slimer_speed += 100

@@ -137,10 +137,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkbax"]
-radius = 14.0357
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rkbax")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.25, 0.5)
@@ -151,7 +151,6 @@ autoplay = "idle"
 frame_progress = 0.000263635
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_rkbax")
 
